@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 const config = {
   projectName: 'myTaroApp',
   date: '2023-5-30',
@@ -11,6 +13,11 @@ const config = {
   outputRoot: `dist/${process.env.TARO_ENV}`,
   plugins: [],
   defineConstants: {
+  },
+  alias: {
+    '@/': resolve(__dirname, '..', 'src/'),
+    '@/store': resolve(__dirname, '..', 'src/store'),
+    '@/utils': resolve(__dirname, '..', 'src/utils'),
   },
   copy: {
     patterns: [
@@ -38,7 +45,7 @@ const config = {
         }
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
@@ -74,7 +81,7 @@ const config = {
   }
 }
 
-module.exports = function (merge) {
+export default function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }

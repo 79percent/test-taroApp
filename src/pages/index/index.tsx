@@ -1,25 +1,41 @@
 import { View, Text, Map, Button } from '@tarojs/components'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro';
+import useIndex from '@/store/index';
 import './index.less';
 
-import type CustomTabBar from '../../custom-tab-bar';
+// import type CustomTabBar from '../../custom-tab-bar';
 
 export default function Index() {
+
+  const {
+    count,
+    setCount
+  } = useIndex((state) => (state));
   
   useLoad(() => {
     console.log('Page loaded.')
   })
   
-  useDidShow(() => {
-    const pageCtx = Taro.getCurrentInstance().page;
-    const tabbar = Taro.getTabBar<CustomTabBar>(pageCtx);
-    tabbar?.setSelected(0);
-  })
+  // useDidShow(() => {
+  //   const pageCtx = Taro.getCurrentInstance().page;
+  //   const tabbar = Taro.getTabBar<CustomTabBar>(pageCtx);
+  //   tabbar?.setSelected(0);
+  // })
 
   return (
     <View className='index'>
       <Text>Hello world!1111</Text>
+      <View>{count}</View>
       <Map longitude={120} latitude={30}></Map>
+      <Button 
+        plain 
+        type='primary' 
+        onTap={() => {
+          Taro.navigateTo({
+            url: '/pages/webview/index',
+          })
+        }}
+      >navigateTo</Button>
       <Button 
         plain 
         type='primary' 
@@ -42,14 +58,7 @@ export default function Index() {
             }
           })
         }}
-      >登录</Button>
-      <Button 
-        plain 
-        type='primary' 
-        onTap={() => {
-          const cameraContext = Taro.createCameraContext()
-        }}
-      >拍照</Button>
+      >login</Button>
       <Button 
         plain 
         type='primary' 
@@ -75,7 +84,7 @@ export default function Index() {
             }
           })
         }}
-      >选择图片</Button>
+      >chooseImage</Button>
       <Button 
         plain 
         type='primary' 
@@ -89,7 +98,7 @@ export default function Index() {
             }
           })
         }}
-      >选择视频</Button>
+      >chooseVideo</Button>
       <Button 
         plain 
         type='primary' 
@@ -103,7 +112,7 @@ export default function Index() {
             }
          })
         }}
-      >按钮</Button>
+      >setNavigationBarColor</Button>
       <Button 
         plain 
         type='primary' 
@@ -114,14 +123,14 @@ export default function Index() {
             duration: 2000
           })
         }}
-      >按钮</Button>
+      >showToast</Button>
       <Button 
         plain 
         type='primary' 
         onTap={() => {
           Taro.showNavigationBarLoading()
         }}
-      >按钮</Button>
+      >showNavigationBarLoading</Button>
       <Button 
         plain 
         type='primary' 
@@ -130,7 +139,7 @@ export default function Index() {
             index: 6
           })
         }}
-      >按钮</Button>
+      >showTabBarRedDot</Button>
       <Button 
         plain 
         type='primary' 
@@ -140,29 +149,7 @@ export default function Index() {
             backgroundColorBottom: '#ffffff', // 底部窗口的背景色为白色
           })
         }}
-      >按钮</Button>
-      <Button 
-        plain 
-        type='primary' 
-        onTap={() => {
-          Taro.navigateTo({
-            url: '/pages/test/index',
-            events: {
-              // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-              acceptDataFromOpenedPage: function(data) {
-                console.log(data)
-              },
-              someEvent: function(data) {
-                console.log(data)
-              }
-            },
-            success: function (res) {
-              // 通过eventChannel向被打开页面传送数据
-              res.eventChannel.emit('acceptDataFromOpenerPage', { data: 'test' })
-            }
-          })
-        }}
-      >按钮</Button>
+      >setBackgroundColor</Button>
     </View>
   )
 }

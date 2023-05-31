@@ -1,5 +1,12 @@
 export default defineAppConfig({
-  pages: ["pages/index/index", "pages/test/index"],
+  entryPagePath: 'pages/test/index',
+  pages: [
+    "pages/home/index", 
+    "pages/index/index", 
+    "pages/test/index", 
+    "pages/webview/index",
+    "pages/shareElement/index",
+  ],
   window: {
     navigationBarBackgroundColor: "#ffffff",
     navigationBarTextStyle: "black",
@@ -8,19 +15,27 @@ export default defineAppConfig({
     backgroundTextStyle: "light",
   },
   tabBar: {
-    custom: true,
-    color: "#000",
+    custom: false,
+    color: "#fff",
     selectedColor: "#FF5F15",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000",
     borderStyle: "black",
     list: [
       {
-        pagePath: "pages/index/index",
+        pagePath: "pages/home/index",
         text: "首页",
+      },
+      {
+        pagePath: "pages/index/index",
+        text: "index",
       },
       {
         pagePath: "pages/test/index",
         text: "测试",
+      },
+      {
+        pagePath: "pages/shareElement/index",
+        text: "shareElement",
       },
     ],
   },
