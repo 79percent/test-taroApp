@@ -30,9 +30,17 @@ export default function Index() {
       <Button 
         plain 
         type='primary' 
+        openType='getPhoneNumber' 
+        onGetPhoneNumber={(e) => {
+          console.log(e)
+        }}
+      >onGetPhoneNumber</Button>
+      <Button 
+        plain 
+        type='primary' 
         onTap={() => {
           Taro.navigateTo({
-            url: '/pages/webview/index',
+            url: '/pages/webviewtwo/index',
           })
         }}
       >navigateTo</Button>

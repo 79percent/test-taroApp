@@ -1,11 +1,16 @@
 export default defineAppConfig({
-  entryPagePath: 'pages/test/index',
+  entryPagePath: 'pages/home/index',
   pages: [
     "pages/home/index", 
     "pages/index/index", 
     "pages/test/index", 
     "pages/webview/index",
+    "pages/webviewtwo/index",
     "pages/shareElement/index",
+  ],
+  components: [
+    'components/custom-navigation-bar/index',
+    'components/popover/index',
   ],
   window: {
     navigationBarBackgroundColor: "#ffffff",
@@ -24,6 +29,10 @@ export default defineAppConfig({
       {
         pagePath: "pages/home/index",
         text: "首页",
+      },
+      {
+        pagePath: "pages/webview/index",
+        text: "webview",
       },
       {
         pagePath: "pages/index/index",

@@ -26,6 +26,8 @@ import {
   Image,
   Video,
   Map,
+  SwiperItem,
+  Swiper,
 } from "@tarojs/components";
 import { useState, useEffect, useRef } from 'react';
 import Taro, { useLoad, useDidShow } from "@tarojs/taro";
@@ -128,6 +130,26 @@ export default function Test() {
   return (
     <View className={styles.test}>
       <Text>测试组件库</Text>
+      <Swiper
+        className='test-h'
+        style={{height: 100}}
+        indicatorColor='#999'
+        indicatorActiveColor='#333'
+        // vertical
+        circular
+        indicatorDots
+        autoplay 
+      >
+        <SwiperItem>
+          <View className='demo-text-1' style={{ backgroundColor: 'red', height: 100 }}>1</View>
+        </SwiperItem>
+        <SwiperItem>
+          <View className='demo-text-2' style={{ backgroundColor: 'green', height: 100 }}>2</View>
+        </SwiperItem>
+        <SwiperItem>
+          <View className='demo-text-3' style={{ backgroundColor: 'blue', height: 100 }}>3</View>
+        </SwiperItem>
+      </Swiper>
       <View>
         <Icon size='60' type='success' />
         <Icon size='60' type='info' />
@@ -167,6 +189,7 @@ export default function Test() {
         />
       </View>
       <View>
+        <Button className='btn-max-w' plain type='primary' >获取手机号</Button>
         <Button className='btn-max-w' plain type='primary'>按钮</Button>
         <Button className='btn-max-w' plain type='primary' disabled>不可点击的按钮</Button>
         <Button className='btn-max-w' plain >按钮</Button>

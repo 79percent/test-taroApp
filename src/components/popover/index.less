@@ -1,0 +1,33 @@
+.my-taro-popover{
+  display: inline-block;
+}
+
+.my-taro-popover-mask{
+  width: 100vw;
+  height: 100vh;
+  // background-color: #00000034;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.my-taro-popover-content{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 20px 0px rgba(47, 50, 50, 0.53);
+  position: absolute;
+  transform-origin: top;
+  transition: all ease 0.4s;
+}
+
+.my-taro-popover-content-triangle{
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ffffff;
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+}
