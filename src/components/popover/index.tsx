@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, PropsWithChildren, ReactNode, useRef } from 'react';
 import { View, RootPortal, CoverView } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { usePageScroll } from "@tarojs/taro";
 import { randomString } from '@/utils';
 import './index.less';
 
@@ -22,6 +22,8 @@ const Popover = (props: PropsWithChildren & PopoverProps) => {
     left: 0
   });
   const [scrollTop, setScrollTop] = useState(0);
+  const [scrollWidth, setScrollWidth] = useState(0);
+  const [scrollHeight, setScrollHeight] = useState(0);
   const [scale, setScale] = useState(0);
   
   useEffect(() => {
@@ -34,32 +36,37 @@ const Popover = (props: PropsWithChildren & PopoverProps) => {
     }).exec();
   }, []);
 
+  useEffect(() => {
+    const query = Taro.createSelectorQuery();
+    query.selectViewport().scrollOffset((res: any) => {
+      setScrollWidth(res.scrollWidth)
+      setScrollHeight(res.scrollHeight)
+    }).exec();
+  }, [])
+
+  usePageScroll((payload) => {
+    setScrollTop(payload.scrollTop);
+  })
+
   return (
     <>
       <View 
         id={popoverIdRef.current}
         className='my-taro-popover' 
         onTap={() => {
-          const query = Taro.createSelectorQuery();
-          query.select(`#${popoverIdRef.current}`).boundingClientRect((res1: any) => {
-            const query2 = Taro.createSelectorQuery();
-            query2.selectViewport().scrollOffset((res2) => {
-              setScrollTop(res2.scrollTop);
-              setShowPopover(true);
-              setScale(1);
-            }).exec();
-          }).exec();
+          setShowPopover(true);
+          setScale(1);
         }}
       >
         {children}
       </View>
-      {true && (
+      {showPopover && (
         <RootPortal>
           <View 
             className='my-taro-popover-mask' 
             style={{
-              top: `${scrollTop}px`,
-              zIndex: showPopover ? 999 : -1,
+              width: `${scrollWidth}px`,
+              height: `${scrollHeight}px`,
             }}
             onTouchMove={(e) => {
               e.stopPropagation();
@@ -76,7 +83,6 @@ const Popover = (props: PropsWithChildren & PopoverProps) => {
               style={{ 
                 top: `${position.top}px`,
                 left: `${position.left}px `,
-                transform: `scale(${scale})`,
               }}
             >
               {content}

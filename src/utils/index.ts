@@ -3,7 +3,7 @@
  * @param keyName 
  * @param initialValue 
  * @param set 
- * @returns 
+ * @returns {Array} [initialValue, setter]
  */
 export const createState = (keyName: string, initialValue: any, set): [any, (value: any) => void] => {
   return [
@@ -15,7 +15,7 @@ export const createState = (keyName: string, initialValue: any, set): [any, (val
 /**
  * 随机生成指定长度字符串
  * @param length 
- * @returns 
+ * @returns {String}
  */
 export const randomString = (length) => {
   const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

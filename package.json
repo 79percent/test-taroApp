@@ -9,6 +9,7 @@
     "css": "less"
   },
   "scripts": {
+    "create-page": "npx taro create --name",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -55,6 +56,7 @@
     "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "umi": "^4.0.70",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

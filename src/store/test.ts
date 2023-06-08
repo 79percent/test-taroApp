@@ -13,7 +13,7 @@ type Actions = {
   setSelectorData: (show: string) => void;
 }
 
-const useTest = create<State & Actions>((set) => {
+const useTest = create<State & Actions>((set, get) => {
 
   const [pageContainerShow, setPageContainerShow] = createState('pageContainerShow', true, set);
   const [show, setShow] = createState('show', false, set);

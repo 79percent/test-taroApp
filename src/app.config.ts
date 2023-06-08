@@ -1,7 +1,13 @@
 export default defineAppConfig({
   entryPagePath: 'pages/home/index',
   pages: [
-    "pages/home/index", 
+    "pages/home/index", // 首页
+    "pages/carCircle/index", // 车友圈
+    "pages/brandZone/index", // 品牌专区
+    "pages/rankingList/index", // 排行榜
+    "pages/my/index", // 我的
+    "pages/search/index", // 搜索输入页面
+    // 以下为测试页面
     "pages/index/index", 
     "pages/test/index", 
     "pages/webview/index",
@@ -9,21 +15,22 @@ export default defineAppConfig({
     "pages/shareElement/index",
   ],
   components: [
-    'components/custom-navigation-bar/index',
-    'components/popover/index',
+    'components/CustomNavigationBar/index',
+    'components/CustomNavigationBarHome/index', // 首页导航栏组件
+    'components/Popover/index', // 气泡框组件
   ],
   window: {
     navigationBarBackgroundColor: "#ffffff",
     navigationBarTextStyle: "black",
-    navigationBarTitleText: "微信接口功能演示",
-    backgroundColor: "#eeeeee",
+    navigationBarTitleText: "卡车CEO",
+    backgroundColor: "#fff",
     backgroundTextStyle: "light",
   },
   tabBar: {
     custom: false,
-    color: "#fff",
-    selectedColor: "#FF5F15",
-    backgroundColor: "#000",
+    color: "#717379",
+    selectedColor: "#242C40",
+    backgroundColor: "#fff",
     borderStyle: "black",
     list: [
       {
@@ -31,20 +38,20 @@ export default defineAppConfig({
         text: "首页",
       },
       {
-        pagePath: "pages/webview/index",
-        text: "webview",
+        pagePath: "pages/carCircle/index",
+        text: "车友圈",
       },
       {
-        pagePath: "pages/index/index",
-        text: "index",
+        pagePath: "pages/brandZone/index",
+        text: "品牌专区",
       },
       {
-        pagePath: "pages/test/index",
-        text: "测试",
+        pagePath: "pages/rankingList/index",
+        text: "排行榜",
       },
       {
-        pagePath: "pages/shareElement/index",
-        text: "shareElement",
+        pagePath: "pages/my/index",
+        text: "我的",
       },
     ],
   },
