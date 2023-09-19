@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import Taro, { useLaunch } from '@tarojs/taro';
+import { ProviderWrapper } from "@/.plugin/plugin-model/runtime";
 import './app.less';
 
 Taro.loadFontFace({
@@ -15,7 +16,7 @@ function App({ children }: PropsWithChildren) {
   })
 
   // children 是将要会渲染的页面
-  return children
+  return <ProviderWrapper>{children}</ProviderWrapper>;
 }
 
 export default App

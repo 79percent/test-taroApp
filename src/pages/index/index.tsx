@@ -1,16 +1,12 @@
 import { View, Text, Map, Button } from '@tarojs/components'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro';
-import useIndex from '@/store/index';
+import { useModel } from "@/.plugin/plugin-model";
 import './index.less';
 
 // import type CustomTabBar from '../../custom-tab-bar';
 
 export default function Index() {
-
-  const {
-    count,
-    setCount
-  } = useIndex((state) => (state));
+  const { name, setName } = useModel('hello');
   
   useLoad(() => {
     console.log('Page loaded.')
@@ -25,7 +21,7 @@ export default function Index() {
   return (
     <View className='index'>
       <Text>Hello world!1111</Text>
-      <View>{count}</View>
+      <View>{name}</View>;
       <Map longitude={120} latitude={30}></Map>
       <Button 
         plain 

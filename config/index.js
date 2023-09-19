@@ -11,7 +11,18 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: `dist/${process.env.TARO_ENV}`,
-  plugins: [],
+  alias: {
+    "@": resolve(__dirname, "../src"),
+  },
+  plugins: [
+    [
+			"taro-plugin-model",
+			{
+				watch: process.env.NODE_ENV === "development", // watch: true 监听实时更新;false 不监听
+				dirname: resolve(__dirname, "../"), // 当前项目文件夹路径
+			},
+		],
+  ],
   defineConstants: {
   },
   alias: {
@@ -48,7 +59,7 @@ const config = {
       cssModules: {
         enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
+          namingPattern: 'global', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
